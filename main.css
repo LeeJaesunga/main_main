@@ -333,17 +333,16 @@ body {
 }
 
 #main .froject_works ul {
-  flex-wrap: wrap;
     display: flex;
-    gap: 20px 104px;
+  gap: 20px;
+  overflow-x: auto;   
+  overflow-y: hidden;
+  scroll-behavior: smooth; 
+  -webkit-overflow-scrolling: touch; 
 }
 
 #main .froject_works ul li {
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: space-between;
-    flex-direction: column; */
-    width: 46%;
+    width: 39%;
     margin-top: 17px;
 }
 
@@ -428,14 +427,10 @@ body {
   background-color: #08FFC8;
     color: #1b1b1b;
     display: inline-block;
-    /* height: 25px; */
-    padding: 7px 8px;
+    padding: 6px 8px;
     border-radius: 5px;
-    /* box-sizing: border-box; */
-    /* color: var(--white); */
-    /* line-height: 0px; */
-    max-width: calc(100% - 70px);
-    font-size: 16px;
+    max-width: calc(100% - 42px);
+    font-size: 10px;
 }
 
 #main .workPage .title {
@@ -722,8 +717,19 @@ body {
   }
 
   #main .froject_works ul li {
-    width: auto;
+    width: 99%;
   }
+
+  #main .type .content {
+    background-color: #08FFC8;
+    color: #1b1b1b;
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 5px;
+    max-width: calc(100% - 42px);
+    font-size: 16px;
+  }
+
 
   #main .main_skill {
 
@@ -746,8 +752,12 @@ body {
   }
 
   #main .skii_item {
-    /* width: 208px; */
+    width: 65%;
     padding-bottom: 47px;
+  }
+
+  #main .skii_item_wrap_back p {
+    font-size: 1.0rem;
   }
 
   #main .desktop {
