@@ -363,7 +363,7 @@ body {
 }
 
 #main .img_wrap .nexon_img {
-  width: 400px;
+  width: 100%;
 }
 
 #main .img_wrap .kakao_img {
