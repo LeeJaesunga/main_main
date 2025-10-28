@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const x = e.pageX;
     const dx = x - prevX;
-    prevX = y;
+    prevX = x;
 
     // requestAnimationFrame으로 최적화
     cancelAnimationFrame(rafID);
