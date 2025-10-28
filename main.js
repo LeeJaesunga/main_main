@@ -71,26 +71,57 @@ document.addEventListener("DOMContentLoaded", function () {
   let isDown = false;
   let startX;
   let scrollLeft;
+  let velocity = 0;
+  let prevX = 0;
+  let rafID;
+
+  // 관성 스크롤
+  const momentumScroll = () => {
+    slider.scrollLeft += velocity;
+    velocity *= 0.95; // 감속률 (값이 낮을수록 빨리 멈춤)
+    if (Math.abs(velocity) > 0.1) {
+      rafID = requestAnimationFrame(momentumScroll);
+    }
+  };
+
+  const stopMomentum = () => cancelAnimationFrame(rafID);
 
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
     slider.classList.add("active");
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
+    prevX = e.pageX;
+    stopMomentum();
   });
+
   slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
+    if (isDown) {
+      isDown = false;
+      slider.classList.remove("active");
+      requestAnimationFrame(momentumScroll);
+    }
   });
+
   slider.addEventListener("mouseup", () => {
     isDown = false;
     slider.classList.remove("active");
+    requestAnimationFrame(momentumScroll);
   });
+
   slider.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // 드래그 속도 조절
-    slider.scrollLeft = scrollLeft - walk;
+    const x = e.pageX;
+    const dx = x - prevX;
+    prevX = x;
+
+    // requestAnimationFrame으로 최적화
+    cancelAnimationFrame(rafID);
+    rafID = requestAnimationFrame(() => {
+      slider.scrollLeft -= dx;
+      velocity = dx * 0.8; // 드래그 속도 감지
+    });
   });
 });
+

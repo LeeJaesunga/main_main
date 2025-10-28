@@ -337,8 +337,14 @@ body {
   gap: 20px;
   overflow-x: auto;   
   overflow-y: hidden;
-  scroll-behavior: smooth; 
-  -webkit-overflow-scrolling: touch; 
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  scroll-behavior: auto; 
+}
+
+#main .froject_works ul.active {
+  cursor: grabbing;
 }
 
 #main .froject_works ul li {
