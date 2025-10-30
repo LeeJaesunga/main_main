@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 휠 올림 (deltaY < 0) → 오른쪽으로
     // 휠 내림 (deltaY > 0) → 왼쪽으로
-    const scrollSpeed = 40; // 한 번 휠당 이동 거리 (원하면 조정 가능)
+    const scrollSpeed = 80; // 한 번 휠당 이동 거리 (원하면 조정 가능)
     slider.scrollLeft += e.deltaY < 0 ? scrollSpeed : -scrollSpeed;
   }, { passive: false });
 });
