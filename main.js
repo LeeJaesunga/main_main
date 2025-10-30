@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let prevX = 0;
   let rafID;
 
-  // 관성 스크롤
+  // ✅ 관성 스크롤
   const momentumScroll = () => {
     slider.scrollLeft += velocity;
     velocity *= 0.95; // 감속률 (값이 낮을수록 빨리 멈춤)
@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const stopMomentum = () => cancelAnimationFrame(rafID);
 
+  // ✅ 마우스 드래그 스크롤
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
     slider.classList.add("active");
@@ -116,12 +117,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const dx = x - prevX;
     prevX = x;
 
-    // requestAnimationFrame으로 최적화
     cancelAnimationFrame(rafID);
     rafID = requestAnimationFrame(() => {
       slider.scrollLeft -= dx;
-      velocity = dx * 0.8; // 드래그 속도 감지
+      velocity = dx * 0.8;
     });
   });
+
+  /* ============================
+        ✅ 마우스 휠로 좌우 이동
+  ============================= */
+  slider.addEventListener("wheel", (e) => {
+    e.preventDefault(); // 기본 세로 스크롤 방지
+
+    // 휠 올림 (deltaY < 0) → 오른쪽으로
+    // 휠 내림 (deltaY > 0) → 왼쪽으로
+    const scrollSpeed = 80; // 한 번 휠당 이동 거리 (원하면 조정 가능)
+    slider.scrollLeft += e.deltaY < 0 ? scrollSpeed : -scrollSpeed;
+  }, { passive: false });
 });
+
 
