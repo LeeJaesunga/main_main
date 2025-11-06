@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* =============================
-        0) 인트로 → 메인 전환
-  ============================== */
   const intro = document.getElementById('intro');
   const main  = document.getElementById('main');
 
   if (intro) {
-    intro.classList.add('animate');          // Hello 등장→사라짐
-    setTimeout(() => main?.classList.add('show'), 3000); // 3s 뒤 Main 보여주기
+    intro.classList.add('animate');         
+    setTimeout(() => main?.classList.add('show'), 3000); 
   }
 
   /* =============================
@@ -55,7 +51,7 @@ if (footerFont) {
   const slideIn = () => {
     const rect = footerFont.getBoundingClientRect();
     const winH = window.innerHeight;
-    if (rect.top < winH * 0.98) {           // 여기를 0.9 → 0.98로 변경
+    if (rect.top < winH * 0.98) {        
       footerFont.classList.add('slide-in');
       window.removeEventListener('scroll', slideIn);
     }
@@ -75,10 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let prevX = 0;
   let rafID;
 
-  // ✅ 관성 스크롤
+  // 관성 스크롤
   const momentumScroll = () => {
     slider.scrollLeft += velocity;
-    velocity *= 0.95; // 감속률 (값이 낮을수록 빨리 멈춤)
+    velocity *= 0.95; 
     if (Math.abs(velocity) > 0.1) {
       rafID = requestAnimationFrame(momentumScroll);
     }
@@ -86,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const stopMomentum = () => cancelAnimationFrame(rafID);
 
-  // ✅ 마우스 드래그 스크롤
+  // 마우스 드래그 스크롤
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
     slider.classList.add("active");
@@ -128,11 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ✅ 마우스 휠로 좌우 이동
   ============================= */
   slider.addEventListener("wheel", (e) => {
-    e.preventDefault(); // 기본 세로 스크롤 방지
-
-    // 휠 올림 (deltaY < 0) → 오른쪽으로
-    // 휠 내림 (deltaY > 0) → 왼쪽으로
-    const scrollSpeed = 80; // 한 번 휠당 이동 거리 (원하면 조정 가능)
+    e.preventDefault(); 
+    const scrollSpeed = 80; 
     slider.scrollLeft += e.deltaY < 0 ? scrollSpeed : -scrollSpeed;
   }, { passive: false });
 });
